@@ -10,7 +10,7 @@ import numpy as np
 from joblib import dump, load
 
 # Input data
-path_tv_data = '../data/tv/tv_2020_fed.csv'
+path_tv_data = '../datasets/tv/tv_2020_fed.csv'
 dir_models = 'models/goal_rf_'
 # Ouput data
 path_predictions = 'data/ad_goal_rf_tv_2020_fed.csv'
