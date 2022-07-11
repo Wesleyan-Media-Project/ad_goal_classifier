@@ -11,6 +11,7 @@ path_output_data <- "data/fbel_prepared.csv"
 
 df <- fread(path_input_data, encoding = 'UTF-8', data.table = F)
 
+# Clean up unicode
 fix_unicode <- function(text){
   
   Encoding(text) <- "UTF-8"
@@ -26,33 +27,59 @@ fix_unicode <- function(text){
   
   return(text)
 }
-
 # Apply the function to all text columns
 df <- df %>%
-  mutate(across(c(page_name, disclaimer, ad_creative_body,
-                  ad_creative_link_caption, ad_creative_link_title,
+  mutate(across(c(ad_creative_body, ocr, asr, page_name, disclaimer, 
+                  ad_creative_link_caption, ad_creative_link_title, 
                   ad_creative_link_description),
                 fix_unicode))
 
-df$ad_creative_body <- str_remove(df$ad_creative_body,  '\\[\\"\\"')
-df$ad_creative_body <- str_remove(df$ad_creative_body,  '\\"\\"\\]')
-df$ad_creative_body <- str_replace_all(df$ad_creative_body,  '\\"\\"', '\\"')
+# Clean up brackets
+clean_brackets <- function(x){
+  x <- str_remove(x,  '\\[\\"\\"')
+  x <- str_remove(x,  '\\"\\"\\]')
+  x <- str_replace_all(x,  '\\"\\"', '\\"')
+}
+# Apply the function to all text columns
+df <- df %>%
+  mutate(across(c(ad_creative_body, ocr, asr, page_name, disclaimer, 
+                  ad_creative_link_caption, ad_creative_link_title, 
+                  ad_creative_link_description),
+                clean_brackets))
+
+# Clean up semicolons in ocr
+df$ocr <- str_replace_all(df$ocr, ';', ' ')
+
+# Kick out irrelevant variables
+df <- df %>% select(ad_id, 
+                    ad_creative_body, ocr, asr, page_name, disclaimer, ad_creative_link_caption, ad_creative_link_title, ad_creative_link_description,
+                    DONATE, CONTACT, PURCHASE, GOTV, EVENT, POLL, GATHERINFO, LEARNMORE, PRIMARY_PERSUADE)
 
 # Exclude ads that having nothing for PRIMARY_PERSUADE
-# Because those ads also weren't coded for DONATE etc. and would be incorrectly assigned a 0
+# Because those ads also weren't coded for DONATE etc. 
+# and would be incorrectly assigned a 0 (as in, not DONATE etc. when they might be)
 df <- df[df$PRIMARY_PERSUADE != "",]
-
-df <- df %>% select(ad_id, ad_creative_body, DONATE, CONTACT, PURCHASE, GOTV, EVENT, POLL, GATHERINFO, LEARNMORE, PRIMARY_PERSUADE)
 df$PRIMARY_PERSUADE[df$PRIMARY_PERSUADE == "No, primary goal is something else"] <- ""
 
+# If the variable is empty, code as 0, otherwise 1
 df <- df %>%
   mutate(across(c(DONATE, CONTACT, PURCHASE, GOTV, EVENT, POLL, GATHERINFO, LEARNMORE, PRIMARY_PERSUADE),
                 function(x){ifelse(x == "", 0, 1)}))
 
-df <- rename(df, text = ad_creative_body)
+# We used to use only acb
+#df <- rename(df, text = ad_creative_body)
+# Now we concatenate them all together
+# Order doesn't matter since we use a bag of words model
+df <- df %>% unite(col = "text", 
+                     c(ad_creative_body, ocr, asr, page_name, disclaimer, 
+                       ad_creative_link_caption, ad_creative_link_title, 
+                       ad_creative_link_description), 
+                     sep = " ")
 
+# Kick out empty ads
 df <- df[df$text != "",]
 
+# Replace newlines with spaces
 df$text <- str_replace_all(df$text, "\\\n", " ")
 
 fwrite(df, path_output_data)
