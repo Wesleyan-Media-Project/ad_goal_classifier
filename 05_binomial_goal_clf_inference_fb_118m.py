@@ -10,7 +10,7 @@ import numpy as np
 from joblib import dump, load
 
 # Input data
-path_118m_acb = '../118m/all_ads_ad_creative_body.csv'
+path_118m_acb = 'data/118m_prepared.csv.gz'
 dir_models = 'models/goal_rf_'
 # Ouput data
 path_predictions = 'data/ad_goal_rf_fb_118m.csv'
@@ -18,7 +18,6 @@ path_predictions_gz = 'data/ad_goal_rf_fb_118m.csv.gz'
 
 # Load data
 inference = pd.read_csv(path_118m_acb)
-inference.columns = ['ad_id', 'text']
 inference = inference[inference['text'] != ""]
 inference = inference.dropna()
 
