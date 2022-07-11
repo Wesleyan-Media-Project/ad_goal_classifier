@@ -2,6 +2,7 @@ library(data.table)
 library(stringr)
 library(stringi)
 library(dplyr)
+library(tidyr)
 
 # Input data
 path_input_data <- "data/fbel_w_train.csv"
