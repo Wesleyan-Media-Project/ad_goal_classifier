@@ -13,7 +13,7 @@ from joblib import dump, load
 path_118m_acb = 'data/118m_prepared.csv.gz'
 dir_models = 'models/goal_rf_'
 # Ouput data
-path_predictions = 'data/ad_goal_rf_fb_118m.csv'
+# path_predictions = 'data/ad_goal_rf_fb_118m.csv'
 path_predictions_gz = 'data/ad_goal_rf_fb_118m.csv.gz'
 
 # Load data
@@ -42,4 +42,5 @@ inference['goal_highest_prob'] = inference['goal_highest_prob'].str.replace('goa
 
 # Save without text column
 inference = inference.drop(['text'], 1)
-inference.to_csv(path_predictions, index = False)
+# inference.to_csv(path_predictions, index = False)
+inference.to_csv(path_predictions_gz, index = False)
