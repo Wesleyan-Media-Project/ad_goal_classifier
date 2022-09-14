@@ -21,6 +21,8 @@ asr <- asr %>%
   select(ad_id, google_asr_text) %>%
   rename(asr = google_asr_text)
 df <- left_join(df, asr, by = c("id" = "ad_id"))
+df <- df %>% rename(disclaimer = funding_entity)
+
 
 # Clean up brackets
 clean_brackets <- function(x){
@@ -30,7 +32,7 @@ clean_brackets <- function(x){
 }
 # Apply the function to all text columns
 df <- df %>%
-  mutate(across(c(ad_creative_body, asr, page_name, 
+  mutate(across(c(ad_creative_body, asr, page_name, disclaimer,
                   ad_creative_link_caption, ad_creative_link_title, 
                   ad_creative_link_description),
                 clean_brackets))
@@ -38,7 +40,7 @@ df <- df %>%
 # concatenate them all together
 # Order doesn't matter since we use a bag of words model
 df <- df %>% unite(col = "text", 
-                   c(ad_creative_body, asr, page_name, 
+                   c(ad_creative_body, asr, page_name, disclaimer,
                      ad_creative_link_caption, ad_creative_link_title, 
                      ad_creative_link_description), 
                    sep = " ", na.rm = T)
