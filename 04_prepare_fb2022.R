@@ -8,19 +8,22 @@ library(dplyr)
 library(tidyr)
 
 # Input data
-path_input_data <- '../datasets/facebook/fb2022_aug8_to_sep11.rdata'
+path_input_data <- '../datasets/facebook/fb2022_master_0919_1001.csv.gz'
 # Output data
 path_output_data <- "data/fb2022_prepared.csv.gz"
 
 # Load data
-load(path_input_data)
+df <- fread(path_input_data, encoding = 'UTF-8')
 df$id <- paste0("x_", df$id)
 # Merge in ASR
-asr <- fread("../datasets/facebook/fb2022_asr_0904.csv.gz", colClasses = "character")
+asr <- fread("../datasets/facebook/fb2022_asr_1001.csv.gz", colClasses = "character")
 asr <- asr %>% 
   select(ad_id, google_asr_text) %>%
   rename(asr = google_asr_text)
 df <- left_join(df, asr, by = c("id" = "ad_id"))
+df$asr[df$asr == ""] <- NA
+
+# Rename funding entity to disclaimer
 df <- df %>% rename(disclaimer = funding_entity)
 
 
@@ -50,7 +53,10 @@ df <- df[df$text != "",]
 df <- df[is.na(df$text) == F,]
 
 # Replace newlines with spaces
-df$text <- str_replace_all(df$text, "\\\n", " ")
+df$text <- str_replace_all(df$text, "\\\\n", " ")
+
+# Clean up extraneous spaces
+df$text <- str_squish(df$text)
 
 df <- df %>% select(id, text)
 
