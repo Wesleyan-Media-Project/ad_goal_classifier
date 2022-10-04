@@ -60,7 +60,7 @@ for(i in 1:nrow(fb22)){
     state_ind <- which(fb22$delivery_by_region[[i]] == fb22$sen_state[i])
     # If any
     if(length(state_ind) != 0){
-      # Check if more or equal to threshold
+      # Assign as ad's proportion
       fb22$instate_pct[i] <- fb22$region_pct[[i]][state_ind]
     }
   }
