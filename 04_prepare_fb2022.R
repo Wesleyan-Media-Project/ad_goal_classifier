@@ -8,7 +8,7 @@ library(dplyr)
 library(tidyr)
 
 # Input data
-path_input_data <- '../datasets/facebook/fb2022_master_0919_1001.csv.gz'
+path_input_data <- '../datasets/facebook/fb2022_master_0904_1001.csv.gz'
 # Output data
 path_output_data <- "data/fb2022_prepared.csv.gz"
 
