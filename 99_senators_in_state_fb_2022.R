@@ -5,14 +5,14 @@ library(stringr)
 library(ggplot2)
 
 # Load WMP entity file, restrict to senators and only keep pdid and senate state
-ent <- fread("../datasets/wmp_entity_files/Facebook/2022/wmp_fb_2022_entities_v100422_v2.csv")
+ent <- fread("../datasets/wmp_entity_files/Facebook/2022/wmp_fb_2022_entities_v101722.csv")
 ent <- filter(ent, wmp_spontype == "campaign") %>%
   filter(wmp_office == "us senate") %>%
   select(pd_id, sen_state) %>%
   mutate(sen_state = state.name[match(sen_state, state.abb)])
 
 # Load FB 2022 masterfile, only keep id, pdid, delivery_by_region
-fb22 <- fread("../datasets/facebook/fb2022_master_0904_1001.csv.gz", encoding = "UTF-8")
+fb22 <- fread("../datasets/facebook/fb2022_master_1002_1015.csv.gz", encoding = "UTF-8")
 fb22$id <- paste0("x_", fb22$id)
 fb22 <- fb22 %>% select(id, pd_id, delivery_by_region)
 
