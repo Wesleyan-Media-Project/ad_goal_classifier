@@ -5,14 +5,14 @@ library(stringr)
 library(ggplot2)
 
 # Load WMP entity file, restrict to senators and only keep pdid and senate state
-ent <- fread("../datasets/wmp_entity_files/Facebook/2022/wmp_fb_2022_entities_v102022.csv")
+ent <- fread("../datasets/wmp_entity_files/Facebook/2022/wmp_fb_2022_entities_v110122.csv")
 ent <- filter(ent, wmp_spontype == "campaign") %>%
   filter(wmp_office == "us senate") %>%
   select(pd_id, sen_state) %>%
   mutate(sen_state = state.name[match(sen_state, state.abb)])
 
 # Load FB 2022 masterfile, only keep id, pdid, delivery_by_region
-fb22 <- fread("../datasets/facebook/fb2022_master_1002_1015.csv.gz", encoding = "UTF-8")
+fb22 <- fread("../datasets/facebook/fb2022_master_1016_1029.csv.gz", encoding = "UTF-8")
 fb22$id <- paste0("x_", fb22$id)
 fb22 <- fb22 %>% select(id, pd_id, delivery_by_region)
 
@@ -61,7 +61,11 @@ for(i in 1:nrow(fb22)){
     # If any
     if(length(state_ind) != 0){
       # Assign as ad's proportion
-      fb22$instate_pct[i] <- fb22$region_pct[[i]][state_ind]
+      ad_prop <- as.numeric(fb22$region_pct[[i]][state_ind])
+      # To guard against the extremely rare case that an ad has the senator's
+      # region more than once (presumably a bug), pick the larger one
+      ad_prop <- max(ad_prop)
+      fb22$instate_pct[i] <- ad_prop
     }
   }
 
