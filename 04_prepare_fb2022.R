@@ -8,7 +8,7 @@ library(dplyr)
 library(tidyr)
 
 # Input data
-path_input_data <- '../datasets/facebook/fb2022_master_1016_1029.csv.gz'
+path_input_data <- '../datasets/facebook/fb2022_master_0905_1108.csv.gz'
 # Output data
 path_output_data <- "data/fb2022_prepared.csv.gz"
 
@@ -16,7 +16,7 @@ path_output_data <- "data/fb2022_prepared.csv.gz"
 df <- fread(path_input_data, encoding = 'UTF-8')
 df$id <- paste0("x_", df$id)
 # Merge in ASR
-asr <- fread("../datasets/facebook/fb2022_asr_1029.csv.gz", colClasses = "character")
+asr <- fread("../datasets/facebook/fb2022_asr_1108.csv.gz", colClasses = "character")
 asr <- asr %>% 
   select(ad_id, google_asr_text) %>%
   rename(asr = google_asr_text)
