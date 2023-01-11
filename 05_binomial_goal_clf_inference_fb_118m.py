@@ -10,11 +10,10 @@ import numpy as np
 from joblib import dump, load
 
 # Input data
-path_118m_acb = 'data/118m_prepared.csv.gz'
+path_118m_acb = 'data/128m_prepared.csv.gz'
 dir_models = 'models/goal_rf_'
 # Ouput data
-# path_predictions = 'data/ad_goal_rf_fb_118m.csv'
-path_predictions_gz = 'data/ad_goal_rf_fb_118m.csv.gz'
+path_predictions_gz = 'data/ad_goal_rf_fb_128m.csv.gz'
 
 # Load data
 inference = pd.read_csv(path_118m_acb)
