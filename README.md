@@ -4,7 +4,7 @@ Binomial ad goal classifiers, classifying ads into the following goals: Donate, 
 ## Usage
 The scripts are numbered in the order in which they should be run. Scripts that directly depend on one another are ordered sequentially. Scripts with the same number are alternatives, usually they are the same scripts on different data, or with minor variations. The outputs of each script are saved, so it is possible to, for example, only run the inference script, since the model files are already present.
 
-For an example pipeline, training on 2020 Facebook, and then doing inference on 2022 Facebook, see `pipeline_2022.sh`.
+For an example pipeline, training on 2020 Facebook, and then doing inference on 2022 Facebook, see `pipeline_2022.sh`. This should take about 20 minutes to run on a laptop.
 
 Some scripts require datasets from the datasets repo (which contains datasets that aren't created in any of the repos and intended to be used in more than one repo). That repo is assumed to be cloned into the same top-level folder as the ad_goal_classifier repo.
 
@@ -27,4 +27,4 @@ Scripts 11 and 12 are inference scripts for 2020 Facebook and Google candidate a
 Scripts 99 use Facebook's regional distribution to determine the proportion of an ad's spend that goes into the candidate's own state. This is intended to be used together with the goal classifier to determine, for example, what proportion of donate ads are aimed outside of the candidate's state.
 
 ## Todo
-There are currently inference scripts for 2020 Facebook, 2022 Facebook, and 2020 TV. For Google, there is only an inference scripts for 2020 candidate ads. So we're missing 2022 Google entirely, as well as 2022 TV.
+There are currently inference scripts for 2020 Facebook, 2022 Facebook, and 2020 TV. For Google, there is only an inference script for 2020 candidate ads. So we're missing 2022 Google entirely, as well as 2022 TV.

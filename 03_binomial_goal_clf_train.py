@@ -18,7 +18,7 @@ test = pd.read_csv('data/test.csv', names = ['ad_id', 'text', 'DONATE', 'CONTACT
 
 clf_rf = Pipeline([('vect', CountVectorizer()),
                     ('tfidf', TfidfTransformer()),
-                    ('cal', CalibratedClassifierCV(RandomForestClassifier(n_estimators=500), cv=2, method="sigmoid"),)
+                    ('cal', CalibratedClassifierCV(RandomForestClassifier(n_estimators=500, random_state=123), cv=2, method="sigmoid"),)
 ])
 
 model_name = 'rf'
