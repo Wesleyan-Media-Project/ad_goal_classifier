@@ -9,7 +9,7 @@ For an example pipeline, training on 2020 Facebook, and then doing inference on 
 Some scripts require datasets from the datasets repo (which contains datasets that aren't created in any of the repos and intended to be used in more than one repo). That repo is assumed to be cloned into the same top-level folder as the ad_goal_classifier repo.
 
 ## Requirements
-The scripts use both R (4.0.1) and Python (3.10.5). The packages we used are described in `requirements_r.txt` and `requirements_py.txt`.
+The scripts use both R (4.0.1) and Python (3.9.16). The packages we used are described in `requirements_r.txt` and `requirements_py.txt`.
 
 ## Details
 ### Training data
