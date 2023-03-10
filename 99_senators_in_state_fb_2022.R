@@ -24,7 +24,7 @@ fb22 <- fb22 %>% filter(is.na(sen_state) == F)
 fb22 <- fb22 %>% filter(is.na(delivery_by_region) == F)
 
 
-# Extract regional impressions (state & percentage)
+# Extract regional impressions (state & percentage) 
 # Start extracting the state from region distribution
 fb22$delivery_by_region <- 
   fb22$delivery_by_region %>%
