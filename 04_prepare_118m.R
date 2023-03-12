@@ -8,8 +8,11 @@ library(tidyr)
 
 # Input data
 path_input_data <- "../datasets/facebook/fb_2020_128m_text.csv.gz"
+#This shoule be either fb2022_master_0904_1001.csv.gz or fb2022_master_0919_1001.csv.gz
+
 # Output data
 path_output_data <- "data/128m_prepared.csv.gz"
+#This file does not exist in the data folder
 
 # Read in text data
 df <- fread(path_input_data, encoding = "UTF-8")

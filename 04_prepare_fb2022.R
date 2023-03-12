@@ -9,6 +9,8 @@ library(tidyr)
 
 # Input data
 path_input_data <- '../datasets/facebook/fb2022_master_0905_1108.csv.gz'
+# The line above does not work, it should be either fb2022_master_0919_1001.csv.gz or fb2022_master_0904_1001.csv.gz
+
 path_input_asr <- '../datasets/facebook/asr_fb2022_0905_1108.csv'
 # Output data
 path_output_data <- "data/fb2022_prepared.csv.gz"
