@@ -8,16 +8,23 @@ from sklearn.feature_extraction.text import TfidfTransformer
 import pandas as pd
 import numpy as np
 from joblib import dump, load
+from tqdm import tqdm
+
+# Input data
+path_google_2020_cands = 'data/google_2020_cands_inference_set.csv.gz'
+dir_models = 'models/goal_rf_'
+# Ouput data
+path_predictions_gz = 'data/ad_goal_rf_google_2020_fed_cand_ads_03282022.csv.gz'
 
 # Load data
-inference = pd.read_csv('data/google_inference_set.csv')
+inference = pd.read_csv(path_google_2020_cands)
 
 goals = ["DONATE", "CONTACT", "PURCHASE", "GOTV", "EVENT", "POLL", "GATHERINFO", "LEARNMORE", "PRIMARY_PERSUADE"]
 
-for g in goals:
+for g in tqdm(goals):
 
   # Load model
-  clf = load('models/goal_rf_' + g + '.joblib')
+  clf = load(dir_models + g + '.joblib')
   
   # Apply clf
   predicted_prob = clf.predict_proba(inference['text'])
@@ -33,4 +40,4 @@ inference['goal_highest_prob'] = inference['goal_highest_prob'].str.replace('goa
 
 # Save without text column
 inference = inference.drop(['text'], 1)  
-inference.to_csv('data/ad_goal_rf_google_2020_fed_cand_ads_03282022.csv', index = False)
+inference.to_csv(path_predictions_gz, index = False)
