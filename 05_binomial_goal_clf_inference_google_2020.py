@@ -11,13 +11,13 @@ from joblib import dump, load
 from tqdm import tqdm
 
 # Input data
-path_google_2020_cands = 'data/google_2020_cands_inference_set.csv.gz'
+path_google_2020 = 'data/google_2020_prepared.csv.gz'
 dir_models = 'models/goal_rf_'
 # Ouput data
-path_predictions_gz = 'data/ad_goal_rf_google_2020_fed_cand_ads_03282022.csv.gz'
+path_predictions_gz = 'data/ad_goal_rf_google_2020.csv.gz'
 
 # Load data
-inference = pd.read_csv(path_google_2020_cands)
+inference = pd.read_csv(path_google_2020)
 
 goals = ["DONATE", "CONTACT", "PURCHASE", "GOTV", "EVENT", "POLL", "GATHERINFO", "LEARNMORE", "PRIMARY_PERSUADE"]
 
