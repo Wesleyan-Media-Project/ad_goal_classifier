@@ -1,4 +1,4 @@
-# Prepare the 128m data so it is in the same shape as the training data
+# Prepare the 1.4m data so it is in the same shape as the training data
 
 library(data.table)
 library(stringr)
