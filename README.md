@@ -26,7 +26,7 @@ These additional repos are assumed to be cloned into the same folder as the ad_g
 - [To Do](#todo)
 
 ## Introduction
-This repository contains a series of scripts that clean and prepare data, train a machine learning model, and apply the trained model to different data sets for inference. The ads it is ran on are classified into the following goals: donate, contact, purchase, get-out-the-vote (GOTV), event, poll, gather info, learn more, persuade.
+This repository contains a series of scripts that clean and prepare data, train a machine learning model, and apply the trained model to different data sets for inference. The ads it is run on are classified into the following goals: donate, contact, purchase, get-out-the-vote (GOTV), event, poll, gather info, learn more, persuade.
 
 The model is trained on 2020 Facebook data labeled by the WMP and it can be applied to 2020 and 2022, Facebook, Google, and TV ads.
 
@@ -43,9 +43,7 @@ This repo is part of the Final Data Classification section.
 The output data for the scripts in this repo is in a csv format, with the path to each specific output being specified under output data when the code itself is looked at. For example, the output data for /05_binomial_goal_clf_inference_fb_118m.py is stored at 'data/ad_goal_rf_fb_128m.csv.gz'. The data for files that begin with 1-2 and those begining with 4+ is stored in the data folder, while that for files begining with 3 is stored in the models folder. 
 
 ## Setup 
-This repo contains eight R files and 8 python files that are of interest. The scripts are numbered in the order in which they should be run. Scripts that directly depend on one another are ordered sequentially. Scripts with the same number are alternatives, usually they are the same scripts on different data, or with minor variations. The outputs of each script are saved, so it is possible to, for example, only run the inference script, since the model files are already present. There are also some additional scripts present, which will be discussed in the setup and details sections. 
-
-The outputs of each script are saved, so it is possible to, for example, only run the inference script, since the model files are already present.
+This repo contains eight R files and eight Python files that are of interest. The scripts are numbered in the order in which they should be run. Scripts that directly depend on one another are ordered sequentially. Scripts with the same number are alternatives, usually they are the same scripts on different data, or with minor variations. The outputs of each script are saved, so it is possible to, for example, only run the inference script, since the model files are already present. There are also some additional scripts present, which will be discussed in the setup and details sections. 
 
 For an example pipeline, training on 2020 Facebook, and then doing inference on 2022 Facebook, see `pipeline_2022.sh`. This should take about 20 minutes to run on a laptop.
 
@@ -53,7 +51,7 @@ Some scripts require datasets from the datasets repo (which contains datasets th
 
 In order to use this directory, you must
 ### 1. Install R and Packages
-First, make sure you have R installed. In addition, while R can be ran from the terminal, many people find it much easier to use r-studio along with R.  <br>
+First, make sure you have R installed. In addition, while R can be run from the terminal, many people find it much easier to use r-studio along with R.  <br>
 https://rstudio-education.github.io/hopr/starting.html
 <br>
 Here is a link that walks you through downloading and using both programs. <br>
