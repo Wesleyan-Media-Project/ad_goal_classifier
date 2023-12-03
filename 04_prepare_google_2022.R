@@ -1,4 +1,4 @@
-# Prepare the Google 2020 data so it is in the same shape as the training data
+# Prepare the Google 2022 data so it is in the same shape as the training data
 
 library(data.table)
 library(stringr)
