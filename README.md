@@ -47,7 +47,7 @@ This repo contains eight R files and eight Python files that are of interest. Th
 
 For an example pipeline, training on 2020 Facebook, and then doing inference on 2022 Facebook, see `pipeline_2022.sh`. This should take about 20 minutes to run on a laptop.
 
-Some scripts require datasets from the datasets repo (which contains datasets that aren't created in any of the repos and intended to be used in more than one repo). That repo is assumed to be cloned into the same top-level folder as the ad_goal_classifier repo.
+Some scripts require datasets from the datasets repo (which contains datasets that aren't created in any of the repos and intended to be used in more than one repo). That repo is assumed to be cloned into the same top-level folder as the ad_goal_classifier repo. Some parts of the data in the datasets repo include the TV data. Due to contractual reasons, users must apply directly to receive raw TV data. Visit http://mediaproject.wesleyan.edu/dataaccess/ and fill out the online request form to access the TV datasets.
 
 In order to use this directory, you must
 ### 1. Install R and Packages
