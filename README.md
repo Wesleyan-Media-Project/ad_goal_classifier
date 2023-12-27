@@ -84,7 +84,7 @@ In order to use the scripts in this repo, you will need to download the reposito
 04_prepare_118m.R, 05_binomial_goal_clf_inference_tv.py 06_prepare_tv_validation.R, 99_house_in_state_fb_2022.R, and 99_senators_in_state_fb_2022.R all require the [datasets repo](
 https://github.com/Wesleyan-Media-Project/datasets) 
 
-04_prepare_140m.R requires the [fb_2020 repo](https://github.com/Wesleyan-Media-Project/fb_2020). 
+04_prepare_140m.R requires the [fb_2020 repo](https://github.com/Wesleyan-Media-Project/fb_2020). The specific file it requires `fb_2020_140m_adid_text_clean.csv.gz` will be hosted on Figshare. 
 
 04_prepare_fb2022.R requires the [fb_2022 repo](https://github.com/Wesleyan-Media-Project/fb_2022). 
 
