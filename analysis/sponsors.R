@@ -16,13 +16,13 @@ names(fb22_pred) <- str_remove(names(fb22_pred), "goal_")
 names(fb22_pred) <- str_remove(names(fb22_pred), "_prediction")
 
 # Combine relevant vars from multiple datasets
-fb22_vars <- fread("../../fb_2022/fb_2022_adid_var1.csv.gz", data.table = F)
+fb22_vars <- fread("../../data-post-production/fb_2022/fb_2022_adid_var1.csv.gz", data.table = F)
 fb22_vars <- fb22_vars %>% select(ad_id, page_id, pd_id, spend)
 fb22_vars$spend <- str_split_fixed(fb22_vars$spend, ",", 2) %>%
   apply(., 2, function(x){str_extract(x, "[0-9]+")}) %>%
   apply(., 1, function(x){mean(as.numeric(x))})
 
-fb22_vars2 <- fread("../../fb_2022/fb_2022_adid_text.csv.gz", data.table = F)
+fb22_vars2 <- fread("../../data-post-production/fb_2022/fb_2022_adid_text.csv.gz", data.table = F)
 fb22_vars2 <- fb22_vars2 %>% select(ad_id, page_name)
 
 fb22 <- left_join(fb22_vars, fb22_vars2, by = "ad_id")
