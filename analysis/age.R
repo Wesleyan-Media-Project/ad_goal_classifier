@@ -20,7 +20,10 @@ extract_age <- function(x) {
   return(ad_demographic)
 }
 
-fb22_vars <- fread("../../data-post-production/fb_2022/fb_2022_adid_var1.csv.gz", data.table = F)
+fb22_vars <- fread("fb_2022_adid_var1.csv.gz", data.table = F)
+# "fb_2022_adid_var1.csv.gz" is the output table from
+# part of data-post-production repo that merges preprocessed results.
+# Source: data-post-production/01-merge-results/01_merge_preprocessed_results
 test <- fb22_vars[fb22_vars$demographic_distribution != "", ]
 ads_age <- sapply(test$demographic_distribution, extract_age)
 
