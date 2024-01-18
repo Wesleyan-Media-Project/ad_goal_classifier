@@ -8,7 +8,8 @@ library(dplyr)
 library(tidyr)
 
 # Input data
-path_input_data <- "../data-post-production/fb_2022/fb_2022_adid_text_clean.csv.gz"
+path_input_data <- "fb_2022_adid_text.csv.gz"
+# source : data-post-production/01-merge-results/01_merge_preprocessed_results
 # Output data
 path_output_data <- "data/fb2022_prepared.csv.gz"
 

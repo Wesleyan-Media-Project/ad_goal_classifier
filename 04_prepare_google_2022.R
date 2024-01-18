@@ -7,7 +7,7 @@ library(dplyr)
 library(tidyr)
 
 # Input data
-path_input_data <- "g2022_adid_01062021_11082022_text.csv"
+path_input_data <- "g2022_adid_01062021_11082022_text.csv.gz"
 # this is the output table from part of data-post-production repo that merges preprocessed results.
 # Source: data-post-production/01-merge-results/01_merge_preprocessed_results
 
