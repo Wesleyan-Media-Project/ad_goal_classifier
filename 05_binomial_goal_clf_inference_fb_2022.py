@@ -40,5 +40,5 @@ inference['goal_highest_prob'] = inference['goal_highest_prob'].str.replace('_pr
 inference['goal_highest_prob'] = inference['goal_highest_prob'].str.replace('goal_', '')
 
 # Save without text column
-inference = inference.drop(['text'], 1)
+inference = inference.drop(['text'], axis=1)
 inference.to_csv(path_predictions_gz, index = False)
