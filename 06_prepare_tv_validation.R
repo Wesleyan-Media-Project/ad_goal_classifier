@@ -3,7 +3,7 @@ library(dplyr)
 library(data.table)
 
 
-cr <- read_dta('../datasets/tv/2020_creative_level_122120.dta')
+cr <- read_dta('../tv-datasets/tv/2020_creative_level_122120.dta') #this data is in tv-datasets and not available to users
 cr <- cr %>% select(c(creative, PERSUADE, DONATE, LEGISLATOR, PURCHASE, OTHERGOAL))
 
 text <- fread('../datasets/tv/tv_2020_fed.csv', data.table = F)
