@@ -7,6 +7,7 @@ library(dplyr)
 library(tidyr)
 
 # Input data
+# google_2020_adid_text_clean.csv.gz is an output of the repo google_2020
 path_input_data <- "../google_2020/google_2020_adid_text_clean.csv.gz"
 # Output data
 path_output_data <- "data/google_2020_prepared.csv.gz"
@@ -16,14 +17,18 @@ df <- fread(path_input_data, encoding = "UTF-8")
 
 # concatenate them all together
 # Order doesn't matter since we use a bag of words model
-df <- df %>% unite(col = "text", 
-                   c(scraped_ad_content, aws_ocr_text, google_asr_text, advertiser_name, 
-                     scraped_ad_url, scraped_ad_title), 
-                   sep = " ")
+df <- df %>% unite(
+  col = "text",
+  c(
+    scraped_ad_content, aws_ocr_text, google_asr_text, advertiser_name,
+    scraped_ad_url, scraped_ad_title
+  ),
+  sep = " "
+)
 
 # Kick out empty ads
-df <- df[df$text != "",]
-df <- df[is.na(df$text) == F,]
+df <- df[df$text != "", ]
+df <- df[is.na(df$text) == F, ]
 
 # Replace newlines with spaces
 df$text <- str_replace_all(df$text, "\\\n", " ")
