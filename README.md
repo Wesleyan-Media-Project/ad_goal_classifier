@@ -52,12 +52,6 @@ To run the scripts in this repo install R and the scripts required packages:
 
 3. In order to successfully run each R script you must first set your working directory. You can do so by adding the line `setwd("your/working/directory")` to the top of the R scripts, replacing `"your/working/directory"` with whatever directory you are running from. Additionally, make sure that the locations to which you are retrieving input files and/or sending output files are accurate.
 
-4. In order to execute an R script you can run the following command from your terminal from within the directory of the script replacing `file.R` with the file name of the script you want to run:
-
-   ```bash
-   Rscript file.R
-   ```
-
 ### 2.2 Install Python and Packages
 
 1. First, make sure you have [Python](https://www.python.org/) installed. The scripts use Python (3.9.16).
@@ -118,6 +112,12 @@ In order to execute a Python script you can run the following command from your 
 
 ```bash
 python3 file.py
+```
+
+In order to execute an R script you can run the following command from your terminal from within the directory of the script replacing `file.R` with the file name of the script you want to run:
+
+```bash
+Rscript file.R
 ```
 
 Note that the output of each script is saved, so it is possible to, for example, only run the inference script, since the model files are already present.
