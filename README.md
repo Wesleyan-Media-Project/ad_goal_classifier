@@ -1,13 +1,14 @@
-# Wesleyan Media Project - Ad Goal Classifier
+# CREATIVE --- Ad Goal Classifier
 
-Welcome! This repository contains a series of scripts that clean and prepare data, train a machine learning model, and apply the trained model to different data sets for inference.
+Welcome! This repo contains scripts for training a machine learning model for political ad goal classification (e.g., donate, contact, or get-out-the-vote).
 
-This repo is a part of the [Cross-platform Election Advertising Transparency Initiative (CREATIVE)](https://www.creativewmp.com/). CREATIVE is an academic research project that has the goal of providing the public with analysis tools for more transparency of political ads across online platforms. In particular, CREATIVE provides cross-platform integration and standardization of political ads collected from Google and Facebook. CREATIVE is a joint project of the [Wesleyan Media Project (WMP)](https://mediaproject.wesleyan.edu/) and the [privacy-tech-lab](https://privacytechlab.org/) at [Wesleyan University](https://www.wesleyan.edu).
+This repo is part of the [Cross-platform Election Advertising Transparency Initiative (CREATIVE)](https://www.creativewmp.com/). CREATIVE is an academic research project that has the goal of providing the public with analysis tools for more transparency of political ads across online platforms. In particular, CREATIVE provides cross-platform integration and standardization of political ads collected from Google and Facebook. CREATIVE is a joint project of the [Wesleyan Media Project (WMP)](https://mediaproject.wesleyan.edu/) and the [privacy-tech-lab](https://privacytechlab.org/) at [Wesleyan University](https://www.wesleyan.edu).
 
-To analyze the different dimensions of political ad transparency we have developed an analysis pipeline. The scripts in this repo are part of the Data Classification Step in our pipeline.
+To analyze the different dimensions of political ad transparency we have developed an analysis pipeline. The scripts in this repo are part of the Data Classification step in our pipeline.
+
 ![A picture of the repo pipeline with this repo highlighted](Creative_Pipelines.png)
 
-Some scripts in this repo require datasets from the [datasets repo](https://github.com/Wesleyan-Media-Project/datasets) (which contains datasets that aren't created in any of the repos and intended to be used in more than one repo) and others require scripts from the [fb_2020 repo](https://github.com/Wesleyan-Media-Project/fb_2020), the [data-post-production repo](https://github.com/Wesleyan-Media-Project/data-post-production), and the [google_2020 repo](https://github.com/Wesleyan-Media-Project/google_2020). Some csv files in those repos are too large to be uploaded to GitHub. You can download them through our Figshare page.
+Some scripts in this repo require datasets from the [datasets repo](https://github.com/Wesleyan-Media-Project/datasets) (which contains datasets that are not created in any of the CREATIVE repos and intended to be used in more than one CREATIVE repo) and others require scripts from the [fb_2020 repo](https://github.com/Wesleyan-Media-Project/fb_2020), the [data-post-production repo](https://github.com/Wesleyan-Media-Project/data-post-production), and the [google_2020 repo](https://github.com/Wesleyan-Media-Project/google_2020). Some csv files in those repos are too large to be uploaded to GitHub. You can download them through our Figshare page.
 
 These additional repos are assumed to be cloned into the same folder as the ad_goal_classifier repo.
 
@@ -16,30 +17,30 @@ These additional repos are assumed to be cloned into the same folder as the ad_g
 - [1. Overview](#1-overview)
 - [2. Setup](#2-setup)
 - [3. Results Storage](#3-results-storage)
-- [4. Details](#4-details)
+- [4. Training Data](#4-training-data)
 - [5. Thank You](#5-thank-you)
 
 ## 1. Overview
 
-The ads that this repository is run on are classified into the following goals: donate, contact, purchase, get-out-the-vote (GOTV), event, poll, gather info, learn more, persuade.
+The ads that the model is run on are categorized into the following goals: donate, contact, purchase, get-out-the-vote (GOTV), event, poll, gather info, learn more, and persuade.
 
-The model is trained on 2020 Facebook data labeled by the WMP and it can be applied to 2020 and 2022, Facebook, Google, and TV ads.
+The model is trained on 2020 Facebook data labeled by the WMP, and it can be applied to 2020 and 2022, Facebook, Google, and TV ads.
 
 ## 2. Setup
 
-This repo contains eight R files and eight Python files that are of interest. The scripts are numbered in the order in which they should be run. Scripts that directly depend on one another are ordered sequentially. Scripts with the same number are alternatives, usually they are the same scripts on different data, or with minor variations. The outputs of each script are saved, so it is possible to, for example, only run the inference script, since the model files are already present. There are also some additional scripts present, which will be discussed in the setup and details sections.
+This repo contains eight R scripts and eight Python scripts that are of interest. The scripts are numbered in the order in which they should be run. Scripts that directly depend on one another are ordered sequentially. Scripts with the same number are alternatives, usually they are the same scripts to be run on different data or with minor variations. The outputs of each script are saved, so it is possible to, for example, only run the inference script, since the model files are already present. There are also some additional scripts present, which will be discussed in the setup section.
 
-For an example pipeline, training on 2020 Facebook, and then doing inference on 2022 Facebook, see `pipeline_2022.sh`. This should take about 20 minutes to run on a laptop.
+For an example pipeline, training on 2020 Facebook, and then doing inference on 2022 Facebook data, see `pipeline_2022.sh`. This task should take about 20 minutes to run on a laptop.
 
-Some scripts require datasets from the datasets repo (which contains datasets that aren't created in any of the repos and intended to be used in more than one repo). That repo is assumed to be cloned into the same top-level folder as the ad_goal_classifier repo. Some parts of the data in the datasets repo include the TV data. Due to contractual reasons, users must apply directly to receive raw TV data. Visit http://mediaproject.wesleyan.edu/dataaccess/ and fill out the online request form to access the TV datasets.
+Some scripts require datasets from the [datasets repo](https://github.com/Wesleyan-Media-Project/datasets) (which contains datasets that are not created in any of the repos and intended to be used in more than one repo). That repo is assumed to be cloned into the same top-level folder as the ad_goal_classifier repo. Some parts of the data in the datasets repo include TV data. Due to contractual reasons, users must apply directly to receive raw TV data. Visit <http://mediaproject.wesleyan.edu/dataaccess/> and fill out the online request form for accessing TV data.
 
-In order to use this directory, you must follow the steps below:
+### 2.1 Install R and Packages
 
-### 1. Install R and Packages
+To run the scripts in this repo install R and the scripts required packages:
 
-1. First, make sure you have R installed. While R can be run from the terminal, many people find it much easier to use r-studio along with R. [Here](https://rstudio-education.github.io/hopr/starting.html) is a link that walks you through downloading and using both programs. The scripts use R (4.0.1).
+1. First, make sure you have R installed. While R can be run from the terminal, many people find it easier to use RStudio along with R. Here is a [tutorial for setting up R and RStudio](https://rstudio-education.github.io/hopr/starting.html). We tested our scripts with R v4.0.1.
 
-2. Next, make sure you have the following packages installed in R (the exact version we used of each package is listed in the [requirements_r.txt file](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/requirements_r.txt)). You can install by calling:
+2. Next, make sure you have the following packages installed in R (the exact version we used of each package is listed in the [requirements_r.txt file](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/requirements_r.txt)). You can the packages install by calling:
 
    ```R
    install.packages('data.table')
@@ -49,15 +50,15 @@ In order to use this directory, you must follow the steps below:
    install.packages("tidyr")
    ```
 
-3. In order to successfully run each R script, you must first set your working directory. You can achieve this by adding the line `setwd("your/working/directory")` to the top of the R scripts, replacing `"your/working/directory"` with whatever directory you are running from. Additionally, make sure that the locations to which you are retrieving input files and/or sending output files are accurate.
+3. In order to successfully run each R script you must first set your working directory. You can do so by adding the line `setwd("your/working/directory")` to the top of the R scripts, replacing `"your/working/directory"` with whatever directory you are running from. Additionally, make sure that the locations to which you are retrieving input files and/or sending output files are accurate.
 
-4. In order to execute an R script, you can run the following code from your command-line, replacing `file.R` with the necessary file name/location:
+4. In order to execute an R script you can run the following command from your terminal from within the directory of the script replacing `file.R` with the file name of the script you want to run:
 
    ```bash
    Rscript file.R
    ```
 
-### 2. Install Python and Packages
+### 2.2 Install Python and Packages
 
 1. First, make sure you have [Python](https://www.python.org/) installed. The scripts use Python (3.9.16).
 
@@ -71,19 +72,21 @@ In order to use this directory, you must follow the steps below:
    pip install tqdm
    ```
 
-3. In order to execute a python script, you can run the following code from your command-line, replacing `file.py` with the necessary file name/location:
+### 2.3 Download Files Needed
 
-   ```bash
-   python3 file.py
-   ```
+In order to use the scripts in this repo, you will need to clone download the repo into a top level folder. If you have Git installed, you can do so by running the following command from your terminal:
 
-### 3. Download Files Needed
+```bash
+git clone https://github.com/Wesleyan-Media-Project/ad_goal_classifier.git
+```
 
-In order to use the scripts in this repo, you will need to download the repository into a top level folder. In addition, depending on which scripts you are running, additional repositories will also be necessary. Specifically which repositories are needed depends on which script you are executing.
+Otherwise, you can download the repo as a ZIP file from GitHub.
 
-- 04_prepare_118m.R, 05_binomial_goal_clf_inference_tv.py 06_prepare_tv_validation.R, 99_house_in_state_fb_2022.R, and 99_senators_in_state_fb_2022.R all require the [datasets repo](https://github.com/Wesleyan-Media-Project/datasets)
+In addition, depending on which scripts you are running, additional repos will be necessary.
 
-  You can clone this repository using the following command:
+- 04_prepare_118m.R, 05_binomial_goal_clf_inference_tv.py 06_prepare_tv_validation.R, 99_house_in_state_fb_2022.R, and 99_senators_in_state_fb_2022.R all require the [datasets repo](https://github.com/Wesleyan-Media-Project/datasets).
+
+  You can clone this repo using the following command:
 
   ```bash
   git clone https://github.com/Wesleyan-Media-Project/datasets.git
@@ -93,7 +96,7 @@ In order to use the scripts in this repo, you will need to download the reposito
 
 - 04_prepare_fb2022.Rand 04_prepare_google_2022.R require the [data-post-production repo](https://github.com/Wesleyan-Media-Project/data-post-production).
 
-  You can clone this repository using the following command:
+  You can clone this repo using the following command:
 
   ```bash
   git clone https://github.com/Wesleyan-Media-Project/data-post-production.git
@@ -101,45 +104,49 @@ In order to use the scripts in this repo, you will need to download the reposito
 
 - 04_prepare_google_2020.R requires the [google_2020 repo](https://github.com/Wesleyan-Media-Project/google_2020).
 
-  You can clone this repository using the following command:
+  You can clone this repo using the following command:
 
   ```bash
   git clone https://github.com/Wesleyan-Media-Project/google_2020.git
   ```
 
-### 4. Run Files
+### 3.4 Run Scripts
 
-Depending on what you are doing, you will run different files.
+Depending on what you want to do, you will be running different scripts.
 
-Remember that the outputs of each script are saved, so it is possible to, for example, only run the inference script, since the model files are already present.
+In order to execute a Python script you can run the following command from your terminal from within the directory of the script replacing `file.py` with the file name of the script you want to run:
 
-01_prepare_fbel.R is preparing training data and 02_create_training_data.py and 03_binomial_goal_clf_train.py are both creating training data. File 02 contains an 80/20 train/test split. File 03 trains the data on the training set, and also records performance on the test set. Performance scores for each goal are saved in performance/rf/.
+```bash
+python3 file.py
+```
 
-The files that begin with 04 are all alternatives of each other, with each one preparing a different data set so that it is in the same shape as the training data.
+Note that the output of each script is saved, so it is possible to, for example, only run the inference script, since the model files are already present.
 
-The files that begin with 05 are also all alternatives of each other, with each one running inference on a different data set.
+`01_prepare_fbel.R` is preparing training data and `02_create_training_data.py` and `03_binomial_goal_clf_train.py` are both creating training data. Script 02 contains an 80/20 train/test split. Script 03 trains the data on the training set, and also records performance on the test set. Performance scores for each goal are saved in `performance/rf/`.
 
-For the files that begin with 04 and 05, inferencing which data set they are being run on can be done from looking at the end of their names. For example, /05_binomial_goal_clf_inference_google_2022.py is inference on the data-post-production/google_2022 dataset. In addition, this can be seen when looking at their input data, which will include a path to the data set they are referencing.
+The scripts that begin with 04 are all alternatives of each other, with each one preparing a different dataset so that it is in the same shape as the training data.
 
-Scripts 06 and 07 test whether the model trained on only Facebook ads can also be applied to TV ads. It does that by applying the models to 2020 TV ads labeled by the WMP.
+The scripts that begin with 05 are also all alternatives of each other, with each one running inference on a different dataset.
 
-Scripts 11 and 12 are inference scripts for 2020 Facebook and Google candidate ads only.
+For the scripts that begin with 04 and 05, inferencing which dataset they are being run on can be done from looking at the end of their names. For example, `05_binomial_goal_clf_inference_google_2022.py` is inference on the `data-post-production/google_2022 dataset`. In addition, this information can be seen when looking at the scripts' input data, which will include a path to the dataset they are referencing.
 
-Scripts 99 use Facebook's regional distribution to determine the proportion of an ad's spend that goes into the candidate's own state. This is intended to be used together with the goal classifier to determine, for example, what proportion of donate ads are aimed outside of the candidate's state.
+Scripts beginning with 06 and 07 test whether the model trained on only Facebook ads can also be applied to TV ads. It does so by applying the models to 2020 TV ads labeled by WMP.
+
+Scripts beginning with 11 and 12 are inference scripts for 2020 Facebook and Google electoral candidate ads only.
+
+Scripts beginning with 99 use Facebook's regional distribution to determine the proportion of an ad's monetary spend that goes into an electoral candidate's own state. This information is intended to be used together with the goal classifier to determine, for example, what proportion of donate ads are aimed outside of the candidate's state.
 
 ## 3. Results Storage
 
-The output data for the scripts in this repo is in a `csv` format, with the path to each specific output being specified under output data when the code itself is looked at. For example, the output data for /05_binomial_goal_clf_inference_fb_118m.py is stored at 'data/ad_goal_rf_fb_128m.csv.gz'. The data for all scripts are stored in the data folder, while the trained models that are created with the `03_binomial_goal_clf_train.py` are in the models folder.
+The output data for the scripts in this repo is in `csv` format, with the path to each specific output being specified under output data when the code itself is looked at. For example, the output data for `05_binomial_goal_clf_inference_fb_118m.py` is stored at `data/ad_goal_rf_fb_128m.csv.gz`. The data for all scripts are stored in the data folder, while the trained models that are created with the `03_binomial_goal_clf_train.py` are in the models folder.
 
-## 4. Details
+## 4. Training data
 
-### Training data
-
-The training data is the FBEL dataset. Its codebook can be found [here](https://drive.google.com/drive/folders/1gx1hDxEON_ck_i49nhbFpGXFCRbCU5bM?usp=share_link).
+The training data is the FBEL dataset. Here is the [codebook](https://drive.google.com/drive/folders/1gx1hDxEON_ck_i49nhbFpGXFCRbCU5bM?usp=share_link) of the dataset.
 
 ## 5. Thank You
 
-<p align="center"><strong>We would like to thank our financial supporters!</strong></p><br>
+<p align="center"><strong>We would like to thank our supporters!</strong></p><br>
 
 <p align="center">This material is based upon work supported by the National Science Foundation under Grant Numbers 2235006, 2235007, and 2235008.</p>
 
