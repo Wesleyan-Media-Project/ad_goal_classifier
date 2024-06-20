@@ -71,7 +71,7 @@ To run the scripts in this repo install R and the scripts required packages:
 
 ### 2.2 Install Python and Packages
 
-1. First, make sure you have [Python](https://www.python.org/) installed. The scripts use Python (3.9.16).
+1. First, make sure you have [Python](https://www.python.org/) installed. The scripts have been tested with Python (3.9.16), so we recommend using this version when running them.
 
 2. In addition, make sure you have the following packages installed in Python (the exact version we used of each package is listed in the [requirements_r.txt file](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/requirements_py.txt)). You can install by running the following in your command-line:
 
@@ -82,6 +82,8 @@ To run the scripts in this repo install R and the scripts required packages:
    pip install joblib
    pip install tqdm
    ```
+
+   **NOTE**: Once again, as the scripts have been tested with the package versions provided in [requirements_r.txt](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/requirements_py.txt), we recommend using those same versions in order to avoid potential errors.
 
 ### 2.3 Download Files Needed
 
@@ -155,7 +157,7 @@ Scripts beginning with 99 use Facebook's regional distribution to determine the 
 
 ## 3. Results Storage
 
-The output data for the scripts in this repo is in `csv` format, with the path to each specific output being specified under output data when the code itself is looked at. For example, the output data for `05_binomial_goal_clf_inference_fb_118m.py` is stored at `data/ad_goal_rf_fb_128m.csv.gz`. The data for all scripts are stored in the data folder, while the trained models that are created with the `03_binomial_goal_clf_train.py` are in the models folder.
+The output data for the scripts in this repo is in `.csv` format – the name and location of each output file is specified in the script that creates it. For example, the output data for `05_binomial_goal_clf_inference_fb_118m.py` is stored at `data/ad_goal_rf_fb_128m.csv.gz`. The data for all scripts are stored in the data folder, while the trained models that are created with the `03_binomial_goal_clf_train.py` are in the models folder.
 
 ## 4. Training data
 
