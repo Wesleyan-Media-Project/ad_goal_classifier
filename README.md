@@ -8,7 +8,7 @@ To analyze the different dimensions of political ad transparency we have develop
 
 ![A picture of the repo pipeline with this repo highlighted](Creative_Pipelines.png)
 
-Some scripts in this repo require datasets from the [datasets repo](https://github.com/Wesleyan-Media-Project/datasets) (which contains datasets that are not created in any of the CREATIVE repos and intended to be used in more than one CREATIVE repo) and others require scripts from the [fb_2020 repo](https://github.com/Wesleyan-Media-Project/fb_2020), the [data-post-production repo](https://github.com/Wesleyan-Media-Project/data-post-production), and the [google_2020 repo](https://github.com/Wesleyan-Media-Project/google_2020). Some csv files in those repos are too large to be uploaded to GitHub. You can download them through our Figshare page.
+Some scripts in this repo require datasets from the [datasets repo](https://github.com/Wesleyan-Media-Project/datasets) (which contains datasets that are not created in any of the CREATIVE repos and intended to be used in more than one CREATIVE repo) and others require scripts from the [fb_2020 repo](https://github.com/Wesleyan-Media-Project/fb_2020), the [data-post-production repo](https://github.com/Wesleyan-Media-Project/data-post-production), and the [google_2020 repo](https://github.com/Wesleyan-Media-Project/google_2020). Some `.csv` files in those repos are too large to be uploaded to GitHub. You can download them through our Figshare page.
 
 These additional repos are assumed to be cloned into the same folder as the ad_goal_classifier repo.
 
@@ -32,13 +32,13 @@ This repo contains eight R scripts and eight Python scripts that are of interest
 
 For an example pipeline, training on 2020 Facebook, and then doing inference on 2022 Facebook data, see `pipeline_2022.sh`. This task should take about 20 minutes to run on a laptop.
 
-Some scripts require datasets from the [datasets repo](https://github.com/Wesleyan-Media-Project/datasets) (which contains datasets that are not created in any of the repos and intended to be used in more than one repo). That repo is assumed to be cloned into the same top-level folder as the ad_goal_classifier repo. Some parts of the data in the datasets repo include TV data. Due to contractual reasons, users must apply directly to receive raw TV data. Visit <http://mediaproject.wesleyan.edu/dataaccess/> and fill out the online request form for accessing TV data.
+As noted before, some scripts require datasets from the [datasets](https://github.com/Wesleyan-Media-Project/datasets) repository. This repo should be cloned into the same top-level folder as the ad_goal_classifier repo. Some parts of the data in the datasets repo include TV data. Due to contractual reasons, users must apply directly to receive raw TV data. Visit <http://mediaproject.wesleyan.edu/dataaccess/> and fill out the online request form for accessing TV data.
 
 ### 2.1 Install R and Packages
 
 To run the scripts in this repo install R and the scripts required packages:
 
-1. First, make sure you have R installed. While R can be run from the terminal, many people find it easier to use RStudio along with R. Here is a [tutorial for setting up R and RStudio](https://rstudio-education.github.io/hopr/starting.html). We tested our scripts with R v4.0.1.
+1. First, make sure you have R installed. While R can be run from the terminal, many people find it easier to use RStudio along with R. Here is a [tutorial for setting up R and RStudio](https://rstudio-education.github.io/hopr/starting.html). These scripts have been tested with R v4.0.1, and so we recommend using this version when running the scripts yourself.
 
 2. Next, make sure you have the following packages installed in R (the exact version we used of each package is listed in the [requirements_r.txt file](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/requirements_r.txt)). You can the packages install by calling:
 
@@ -50,7 +50,24 @@ To run the scripts in this repo install R and the scripts required packages:
    install.packages("tidyr")
    ```
 
-3. In order to successfully run each R script you must first set your working directory. You can do so by adding the line `setwd("your/working/directory")` to the top of the R scripts, replacing `"your/working/directory"` with whatever directory you are running from. Additionally, make sure that the locations to which you are retrieving input files and/or sending output files are accurate.
+3. In order to successfully run each R script you must first set your working directory. The working directory is the location on your computer that R will use for reading and writing files. You can do so by adding the line `setwd("your/working/directory")` to the top of the R scripts, replacing `"your/working/directory"` with your actual working directory. You must make sure that your working directory is in agreement with the paths to where any input files exist and where output files will be created.
+
+   For instance, in script `01_prepare_fbel.R` the input and output are written as follows:
+
+   ```R
+   # Input data
+   path_input_data <- "data/fbel_w_train.csv"
+   # Output data
+   path_output_data <- "data/fbel_prepared.csv"
+   ```
+
+   If you do not wish to change either of these paths, your working directory should be set as follows:
+
+   ```R
+   setwd("/local/path/to/ad_goal_classifier/")
+   ```
+
+   where `/local/path/to/` represents the location at which the ad_goal_classifier folder resides on your computer.
 
 ### 2.2 Install Python and Packages
 
