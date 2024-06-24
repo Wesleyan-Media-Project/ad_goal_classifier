@@ -123,7 +123,7 @@ In addition, depending on which scripts you are running, additional repos will b
   git clone https://github.com/Wesleyan-Media-Project/google_2020.git
   ```
 
-### 3.4 Run Scripts
+### 2.4 Run Scripts
 
 Depending on what you want to do, you will be running different scripts.
 
