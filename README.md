@@ -86,7 +86,7 @@ To run the scripts in this repo install R and the scripts required packages:
    pip install tqdm
    ```
 
-**NOTE**: Once again, as the scripts have been tested with the package versions provided in [requirements_r.txt](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/requirements_py.txt), we recommend using those same versions in order to avoid potential errors.
+**NOTE**: As the scripts have been tested with the package versions provided in [requirements_py.txt](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/requirements_py.txt) and [requirements_r.txt](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/requirements_r.txt), we recommend using those same versions in order to avoid potential errors.
 
 ### 2.3 Download Input Files
 
