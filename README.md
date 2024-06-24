@@ -1,16 +1,12 @@
 # CREATIVE --- Ad Goal Classifier
 
-Welcome! This repo contains scripts for training a machine learning model for political ad goal classification (e.g., donate, contact, or get-out-the-vote).
+Welcome! This repo contains scripts for training a machine learning model for political ad goal classification (e.g., donate, contact, or get-out-the-vote, etc.).
 
 This repo is part of the [Cross-platform Election Advertising Transparency Initiative (CREATIVE)](https://www.creativewmp.com/). CREATIVE is an academic research project that has the goal of providing the public with analysis tools for more transparency of political ads across online platforms. In particular, CREATIVE provides cross-platform integration and standardization of political ads collected from Google and Facebook. CREATIVE is a joint project of the [Wesleyan Media Project (WMP)](https://mediaproject.wesleyan.edu/) and the [privacy-tech-lab](https://privacytechlab.org/) at [Wesleyan University](https://www.wesleyan.edu).
 
 To analyze the different dimensions of political ad transparency we have developed an analysis pipeline. The scripts in this repo are part of the Data Classification step in our pipeline.
 
 ![A picture of the repo pipeline with this repo highlighted](Creative_Pipelines.png)
-
-Some scripts in this repo require datasets from the [datasets repo](https://github.com/Wesleyan-Media-Project/datasets) (which contains datasets that are not created in any of the CREATIVE repos and intended to be used in more than one CREATIVE repo) and others require scripts from the [fb_2020 repo](https://github.com/Wesleyan-Media-Project/fb_2020), the [data-post-production repo](https://github.com/Wesleyan-Media-Project/data-post-production), and the [google_2020 repo](https://github.com/Wesleyan-Media-Project/google_2020). Some `.csv` files in those repos are too large to be uploaded to GitHub. You can download them through our Figshare page.
-
-These additional repos are assumed to be cloned into the same folder as the ad_goal_classifier repo.
 
 ## Table of Contents
 
@@ -22,9 +18,18 @@ These additional repos are assumed to be cloned into the same folder as the ad_g
 
 ## 1. Overview
 
-The ads that the model is run on are categorized into the following goals: donate, contact, purchase, get-out-the-vote (GOTV), event, poll, gather info, learn more, and persuade.
+In this repo, we classify ads into the following nine category of goals: 
+- Donate: Request for donations
+- Contact: Request for viewer to contact with lawmakers
+- Purchase: Selling of merchandise
+- Get-out-the-vote (GOTV): Get out to vote efforts
+- Event: Advertisement of an event
+- Poll: Ask viewer to fill a poll
+- Gather info: Solicitation of viewers' information
+- Learn more: Invite viewer to learn more about a candidate
+- Persuade: Persuade the viewer to vote
 
-The model is trained on 2020 Facebook data labeled by the WMP, and it can be applied to 2020 and 2022, Facebook, Google, and TV ads.
+The model is trained on hand-coded 2020 Facebook data labeled by the WMP.
 
 ## 2. Setup
 
@@ -32,15 +37,13 @@ This repo contains eight R scripts and eight Python scripts that are of interest
 
 For an example pipeline, training on 2020 Facebook, and then doing inference on 2022 Facebook data, see `pipeline_2022.sh`. This task should take about 20 minutes to run on a laptop.
 
-As noted before, some scripts require datasets from the [datasets](https://github.com/Wesleyan-Media-Project/datasets) repository. This repo should be cloned into the same top-level folder as the ad_goal_classifier repo. Some parts of the data in the datasets repo include TV data. Due to contractual reasons, users must apply directly to receive raw TV data. Visit <http://mediaproject.wesleyan.edu/dataaccess/> and fill out the online request form for accessing TV data.
-
 ### 2.1 Install R and Packages
 
 To run the scripts in this repo install R and the scripts required packages:
 
-1. First, make sure you have R installed. While R can be run from the terminal, many people find it easier to use RStudio along with R. Here is a [tutorial for setting up R and RStudio](https://rstudio-education.github.io/hopr/starting.html). These scripts have been tested with R v4.0.1, and so we recommend using this version when running the scripts yourself.
+1. First, make sure you have R installed. While R can be run from the terminal, many people find it easier to use RStudio along with R. Here is a [tutorial for setting up R and RStudio](https://rstudio-education.github.io/hopr/starting.html). These scripts have been tested with R 4.1, 4.2, 4.3, and 4.4.
 
-2. Next, make sure you have the following packages installed in R (the exact version we used of each package is listed in the [requirements_r.txt file](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/requirements_r.txt)). You can the packages install by calling:
+3. Next, make sure you have the following packages installed in R (the exact version we used of each package is listed in the [requirements_r.txt file](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/requirements_r.txt). These are the versions we tested our scripts on. Thus, scripts might also work with other versions but not tested). You can the packages install by calling:
 
    ```R
    install.packages('data.table')
@@ -50,7 +53,7 @@ To run the scripts in this repo install R and the scripts required packages:
    install.packages("tidyr")
    ```
 
-3. In order to successfully run each R script you must first set your working directory. The working directory is the location on your computer that R will use for reading and writing files. You can do so by adding the line `setwd("your/working/directory")` to the top of the R scripts, replacing `"your/working/directory"` with your actual working directory. You must make sure that your working directory is in agreement with the paths to where any input files exist and where output files will be created.
+4. In order to successfully run each R script you must first set your working directory. The working directory is the location on your computer that R will use for reading and writing files. You can do so by adding the line `setwd("your/working/directory")` to the top of the R scripts, replacing `"your/working/directory"` with your actual working directory. You must make sure that your working directory is in agreement with the paths to where any input files exist and where output files will be created.
 
    For instance, in script `01_prepare_fbel.R` the input and output are written as follows:
 
@@ -71,9 +74,9 @@ To run the scripts in this repo install R and the scripts required packages:
 
 ### 2.2 Install Python and Packages
 
-1. First, make sure you have [Python](https://www.python.org/) installed. The scripts have been tested with Python (3.9.16), so we recommend using this version when running them.
+1. First, make sure you have [Python](https://www.python.org/) installed. The scripts have been tested with Python 3.9, and 3.10. 
 
-2. In addition, make sure you have the following packages installed in Python (the exact version we used of each package is listed in the [requirements_r.txt file](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/requirements_py.txt)). You can install by running the following in your command-line:
+2. In addition, make sure you have the following packages installed in Python (the exact version we used of each package is listed in the [requirements_py.txt file](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/requirements_py.txt). These are the versions we tested our scripts on. Thus, scripts might also work with other versions but not tested). You can install by running the following in your command-line:
 
    ```bash
    pip install pandas
@@ -83,49 +86,30 @@ To run the scripts in this repo install R and the scripts required packages:
    pip install tqdm
    ```
 
-   **NOTE**: Once again, as the scripts have been tested with the package versions provided in [requirements_r.txt](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/requirements_py.txt), we recommend using those same versions in order to avoid potential errors.
+**NOTE**: Once again, as the scripts have been tested with the package versions provided in [requirements_r.txt](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/requirements_py.txt), we recommend using those same versions in order to avoid potential errors.
 
-### 2.3 Download Files Needed
+### 2.3 Download Input Files
 
-In order to use the scripts in this repo, you will need to clone download the repo into a top level folder. If you have Git installed, you can do so by running the following command from your terminal:
+**NOTE**: Some parts of the data in the datasets repo include TV data. Due to contractual reasons, users must apply directly to receive raw TV data. Visit <http://mediaproject.wesleyan.edu/dataaccess/> and fill out the online request form for accessing TV data.
 
-```bash
-git clone https://github.com/Wesleyan-Media-Project/ad_goal_classifier.git
-```
+For inference scripts, you will need to download the following input files from Figshare:
 
-Otherwise, you can download the repo as a ZIP file from GitHub.
-
-In addition, depending on which scripts you are running, additional repos will be necessary.
-
-- 04_prepare_118m.R, 05_binomial_goal_clf_inference_tv.py 06_prepare_tv_validation.R, 99_house_in_state_fb_2022.R, and 99_senators_in_state_fb_2022.R all require the [datasets repo](https://github.com/Wesleyan-Media-Project/datasets).
-
-  You can clone this repo using the following command:
-
-  ```bash
-  git clone https://github.com/Wesleyan-Media-Project/datasets.git
-  ```
-
-- 04_prepare_140m.R requires the [fb_2020 repo](https://github.com/Wesleyan-Media-Project/fb_2020). The specific file it requires `fb_2020_140m_adid_text_clean.csv.gz` will be hosted on Figshare.
-
-- 04_prepare_fb2022.Rand 04_prepare_google_2022.R require the [data-post-production repo](https://github.com/Wesleyan-Media-Project/data-post-production).
-
-  You can clone this repo using the following command:
-
-  ```bash
-  git clone https://github.com/Wesleyan-Media-Project/data-post-production.git
-  ```
-
-- 04_prepare_google_2020.R requires the [google_2020 repo](https://github.com/Wesleyan-Media-Project/google_2020).
-
-  You can clone this repo using the following command:
-
-  ```bash
-  git clone https://github.com/Wesleyan-Media-Project/google_2020.git
-  ```
+- For Facebook 2020 [04_prepare_140m.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_140m.R): fb_2020/fb_2020_140m_adid_text_clean.csv.gz (ADD FIGSHARE LINK ONCE READY)
+- For Facebook 2022 [04_prepare_fb2022.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_fb2022.R): fb_2022_adid_text.csv.gz (ADD FIGSHARE LINK ONCE READY)
+- For Google 2020 [04_prepare_google_2020.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_google_2020.R): google_2020/google_2020_adid_text_clean.csv.gz (ADD FIGSHARE LINK ONCE READY)
+- For Google 2020 [04_prepare_google_2022.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_google_2022.R): g2022_adid_01062021_11082022_text.csv.gz (ADD FIGSHARE LINK ONCE READY)
 
 ### 2.4 Run Scripts
 
-Depending on what you want to do, you will be running different scripts.
+#### 2.4.1 Training
+
+**NOTE**: If do not want to train the models from scratch, you can use the trained models we provide [here](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/tree/main/models) and skip to 2.4.2.
+
+To run the inference scripts, you first need to train a machine learning classification model. The training data is the FBEL dataset, located [here](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/data/fbel_w_train.csv). Here is the [codebook](https://drive.google.com/drive/folders/1gx1hDxEON_ck_i49nhbFpGXFCRbCU5bM?usp=share_link) of the dataset.
+
+We prepare the training data which is then trained on a Random Forest Classification model (80/20 train/test split). First, run [`01_prepare_fbel.R`](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/01_prepare_fbel.R) and [`02_create_training_data.py`](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/02_create_training_data.py) to prepare training data. Second, run script [`03_binomial_goal_clf_train.py`](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/03_binomial_goal_clf_train.py) to train the data on the training set, and also record performance on the test set. Performance scores for each goal are saved in [`performance/rf/`](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/tree/main/performance/rf). Note that we train nine different binary classification model, one for each goal category.
+
+#### 2.4.2 Inference
 
 In order to execute a Python script you can run the following command from your terminal from within the directory of the script replacing `file.py` with the file name of the script you want to run:
 
@@ -139,11 +123,12 @@ In order to execute an R script you can run the following command from your term
 Rscript file.R
 ```
 
-Note that the output of each script is saved, so it is possible to, for example, only run the inference script, since the model files are already present.
+The scripts that begin with 04 are all alternatives of each other, with each one preparing a different dataset so that it is in the same shape as the training data. Here is a list of scripts and any input file you will need:
 
-`01_prepare_fbel.R` is preparing training data and `02_create_training_data.py` and `03_binomial_goal_clf_train.py` are both creating training data. Script 02 contains an 80/20 train/test split. Script 03 trains the data on the training set, and also records performance on the test set. Performance scores for each goal are saved in `performance/rf/`.
-
-The scripts that begin with 04 are all alternatives of each other, with each one preparing a different dataset so that it is in the same shape as the training data.
+- For Facebook 2020 [04_prepare_140m.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_140m.R): fb_2020/fb_2020_140m_adid_text_clean.csv.gz (ADD FIGSHARE LINK ONCE READY)
+- For Facebook 2022 [04_prepare_fb2022.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_fb2022.R): fb_2022_adid_text.csv.gz (ADD FIGSHARE LINK ONCE READY)
+- For Google 2020 [04_prepare_google_2020.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_google_2020.R): google_2020/google_2020_adid_text_clean.csv.gz (ADD FIGSHARE LINK ONCE READY)
+- For Google 2020 [04_prepare_google_2022.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_google_2022.R): g2022_adid_01062021_11082022_text.csv.gz (ADD FIGSHARE LINK ONCE READY)
 
 The scripts that begin with 05 are also all alternatives of each other, with each one running inference on a different dataset.
 
@@ -157,13 +142,9 @@ Scripts beginning with 99 use Facebook's regional distribution to determine the 
 
 ## 3. Results Storage
 
-The output data for the scripts in this repo is in `.csv` format – the name and location of each output file is specified in the script that creates it. For example, the output data for `05_binomial_goal_clf_inference_fb_118m.py` is stored at `data/ad_goal_rf_fb_128m.csv.gz`. The data for all scripts are stored in the data folder, while the trained models that are created with the `03_binomial_goal_clf_train.py` are in the models folder.
+The output data for the scripts in this repo is in `.csv` format – the name and location of each output file is specified in the script that creates it. For example, the output data for [`05_binomial_goal_clf_inference_fb_2022.py`](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/05_binomial_goal_clf_inference_fb_2022.py) is stored at [`data/ad_goal_rf_fb2022.csv.gz`](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/data/ad_goal_rf_fb2022.csv.gz).
 
-## 4. Training data
-
-The training data is the FBEL dataset. Here is the [codebook](https://drive.google.com/drive/folders/1gx1hDxEON_ck_i49nhbFpGXFCRbCU5bM?usp=share_link) of the dataset.
-
-## 5. Thank You
+## 4. Thank You
 
 <p align="center"><strong>We would like to thank our supporters!</strong></p><br>
 
