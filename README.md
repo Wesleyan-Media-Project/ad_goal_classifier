@@ -94,9 +94,11 @@ To run the scripts in this repo install R and the scripts required packages:
 
 For inference scripts, you will need to download the following input files from Figshare:
 
-- For Facebook 2020 [04_prepare_140m.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_140m.R): fb_2020/fb_2020_140m_adid_text_clean.csv.gz (ADD FIGSHARE LINK ONCE READY)
 - For Facebook 2022 [04_prepare_fb2022.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_fb2022.R): fb_2022_adid_text.csv.gz (ADD FIGSHARE LINK ONCE READY)
 - For Google 2020 [04_prepare_google_2020.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_google_2020.R): google_2020/google_2020_adid_text_clean.csv.gz (ADD FIGSHARE LINK ONCE READY)
+
+Legacy (non-2022) data production: 
+- For Facebook 2020 [04_prepare_140m.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_140m.R): fb_2020/fb_2020_140m_adid_text_clean.csv.gz (ADD FIGSHARE LINK ONCE READY)
 - For Google 2020 [04_prepare_google_2022.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_google_2022.R): g2022_adid_01062021_11082022_text.csv.gz (ADD FIGSHARE LINK ONCE READY)
 
 ### 2.4 Run Scripts
