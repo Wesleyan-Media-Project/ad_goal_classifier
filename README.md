@@ -105,11 +105,11 @@ Legacy (non-2022) data production:
 
 #### 2.4.1 Training
 
-**NOTE**: If do not want to train the models from scratch, you can use the trained models we provide [here](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/tree/main/models) and skip to 2.4.2.
+**NOTE**: If you do not want to train the models from scratch, you can use the trained models we provide [here](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/tree/main/models) and skip to 2.4.2.
 
 To run the inference scripts, you first need to train a machine learning classification model. The training data is the FBEL dataset, located [here](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/data/fbel_w_train.csv). Here is the [codebook](https://drive.google.com/drive/folders/1gx1hDxEON_ck_i49nhbFpGXFCRbCU5bM?usp=share_link) of the dataset.
 
-We prepare the training data which is then trained on a Random Forest Classification model (80/20 train/test split). First, run [`01_prepare_fbel.R`](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/01_prepare_fbel.R) and [`02_create_training_data.py`](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/02_create_training_data.py) to prepare training data. Second, run script [`03_binomial_goal_clf_train.py`](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/03_binomial_goal_clf_train.py) to train the data on the training set, and also record performance on the test set. Performance scores for each goal are saved in [`performance/rf/`](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/tree/main/performance/rf). Note that we train nine different binary classification model, one for each goal category.
+We prepare the training data which is then trained on a Random Forest Classification model (80/20 train/test split). First, run [`01_prepare_fbel.R`](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/01_prepare_fbel.R) and [`02_create_training_data.py`](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/02_create_training_data.py) to prepare training data. Second, run script [`03_binomial_goal_clf_train.py`](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/03_binomial_goal_clf_train.py) to train the model on the training set, and also record performance on the test set. Performance scores for each goal are saved in [`performance/rf/`](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/tree/main/performance/rf). Note that we train nine different binary classification models, one for each goal category.
 
 #### 2.4.2 Inference
 
