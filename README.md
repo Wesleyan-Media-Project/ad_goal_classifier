@@ -20,7 +20,7 @@ To analyze the different dimensions of political ad transparency we have develop
 
 In this repo, we classify ads into the following nine category of goals: 
 - Donate: Request for donations
-- Contact: Request for viewer to contact with lawmakers
+- Contact: Request for viewer to contact lawmakers
 - Purchase: Selling of merchandise
 - Get-out-to-vote (GOTV): Get out to vote efforts
 - Event: Advertisement of an event
