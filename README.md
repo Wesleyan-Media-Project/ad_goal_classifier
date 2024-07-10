@@ -17,7 +17,8 @@ To analyze the different dimensions of political ad transparency we have develop
 
 ## 1. Overview
 
-In this repo, we classify ads into the following nine category of goals: 
+In this repo, we classify ads into the following nine category of goals:
+
 - Donate: Request for donations
 - Contact: Request for viewer to contact lawmakers
 - Purchase: Selling of merchandise
@@ -42,7 +43,7 @@ To run the scripts in this repo install R and the scripts required packages:
 
 1. First, make sure you have R installed. While R can be run from the terminal, many people find it easier to use RStudio along with R. Here is a [tutorial for setting up R and RStudio](https://rstudio-education.github.io/hopr/starting.html). These scripts have been tested with R 4.1, 4.2, 4.3, and 4.4.
 
-3. Next, make sure you have the following packages installed in R (the exact version we used of each package is listed in the [requirements_r.txt file](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/requirements_r.txt). These are the versions we tested our scripts on. Thus, scripts might also work with other versions but not tested). You can the packages install by calling:
+2. Next, make sure you have the following packages installed in R (the exact version we used of each package is listed in the [requirements_r.txt file](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/requirements_r.txt). These are the versions we tested our scripts on. Thus, scripts might also work with other versions but not tested). You can the packages install by calling:
 
    ```R
    install.packages('data.table')
@@ -52,7 +53,7 @@ To run the scripts in this repo install R and the scripts required packages:
    install.packages("tidyr")
    ```
 
-4. In order to successfully run each R script you must first set your working directory. The working directory is the location on your computer that R will use for reading and writing files. You can do so by adding the line `setwd("your/working/directory")` to the top of the R scripts, replacing `"your/working/directory"` with your actual working directory. You must make sure that your working directory is in agreement with the paths to where any input files exist and where output files will be created.
+3. In order to successfully run each R script you must first set your working directory. The working directory is the location on your computer that R will use for reading and writing files. You can do so by adding the line `setwd("your/working/directory")` to the top of the R scripts, replacing `"your/working/directory"` with your actual working directory. You must make sure that your working directory is in agreement with the paths to where any input files exist and where output files will be created.
 
    For instance, in script `01_prepare_fbel.R` the input and output are written as follows:
 
@@ -73,7 +74,7 @@ To run the scripts in this repo install R and the scripts required packages:
 
 ### 2.2 Install Python and Packages
 
-1. First, make sure you have [Python](https://www.python.org/) installed. The scripts have been tested with Python 3.9, and 3.10. 
+1. First, make sure you have [Python](https://www.python.org/) installed. The scripts have been tested with Python 3.9, and 3.10.
 
 2. In addition, make sure you have the following packages installed in Python (the exact version we used of each package is listed in the [requirements_py.txt file](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/requirements_py.txt). These are the versions we tested our scripts on. Thus, scripts might also work with other versions but not tested). You can install by running the following in your command-line:
 
@@ -96,9 +97,10 @@ For inference scripts, you will need to download the following input files from 
 - For Facebook 2022 [04_prepare_fb2022.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_fb2022.R): [fb_2022_adid_text.csv.gz](https://figshare.wesleyan.edu/account/articles/26124295)
 - For Google 2022 [04_prepare_google_2022.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_google_2022.R): [g2022_adid_01062021_11082022_text.csv.gz](https://figshare.wesleyan.edu/account/articles/26124343)
 
-Legacy (non-2022) data production: 
+Legacy (non-2022) data production:
+
 - For Facebook 2020 [04_prepare_140m.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_140m.R): [fb_2020_140m_adid_text_clean.csv.gz](https://figshare.wesleyan.edu/account/articles/26093257)
-- For Google 2020 [04_prepare_google_2020.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_google_2020.R): google_2020/google_2020_adid_text_clean.csv.gz (ADD FIGSHARE LINK ONCE READY)
+- For Google 2020 [04_prepare_google_2020.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_google_2020.R): [google_2020_adid_text_clean.csv.gz](https://github.com/Wesleyan-Media-Project/datasets/blob/main/google/google_2020_adid_text_clean.csv.gz)
 
 ### 2.4 Run Scripts
 
@@ -129,9 +131,10 @@ The scripts that begin with 04 are all alternatives of each other, with each one
 - For Facebook 2022 [04_prepare_fb2022.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_fb2022.R): fb_2022_adid_text.csv.gz (ADD FIGSHARE LINK ONCE READY)
 - For Google 2022 [04_prepare_google_2022.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_google_2022.R): g2022_adid_01062021_11082022_text.csv.gz (ADD FIGSHARE LINK ONCE READY)
 
-Legacy, non-2022 data: 
+Legacy, non-2022 data:
+
 - For Facebook 2020 [04_prepare_140m.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_140m.R): fb_2020/fb_2020_140m_adid_text_clean.csv.gz (ADD FIGSHARE LINK ONCE READY)
-- For Google 2020 [04_prepare_google_2020.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_google_2020.R): google_2020/google_2020_adid_text_clean.csv.gz (ADD FIGSHARE LINK ONCE READY)
+- For Google 2020 [04_prepare_google_2020.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_google_2020.R): [google_2020_adid_text_clean.csv.gz](https://github.com/Wesleyan-Media-Project/datasets/blob/main/google/google_2020_adid_text_clean.csv.gz)
 
 The scripts that begin with 05 are also all alternatives of each other, with each one running inference on a different dataset.
 

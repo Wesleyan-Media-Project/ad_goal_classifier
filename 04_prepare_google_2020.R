@@ -7,8 +7,7 @@ library(dplyr)
 library(tidyr)
 
 # Input data
-# google_2020_adid_text_clean.csv.gz is an output of the repo google_2020
-path_input_data <- "../google_2020/google_2020_adid_text_clean.csv.gz"
+path_input_data <- "../datasets/google/google_2020_adid_text_clean.csv.gz"
 # Output data
 path_output_data <- "data/google_2020_prepared.csv.gz"
 
