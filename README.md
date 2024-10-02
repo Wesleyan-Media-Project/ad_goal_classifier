@@ -27,7 +27,7 @@ In this repo, we classify ads into the following nine category of goals:
 - Poll: Ask viewer to fill a poll
 - Gather info: Solicitation of viewers' information
 - Learn more: Invite viewer to learn more about a candidate
-- Persuade: Persuade the viewer to vote
+- Persuade: Promote/attack a candidate/persuade the viewer to vote for or against a specific candidate
 
 The model is trained on hand-coded 2020 Facebook data labeled by the WMP.
 
