@@ -92,14 +92,14 @@ To run the scripts in this repo install R and the scripts required packages:
 
 **NOTE**: Some parts of the data in the datasets repo include TV data. Due to contractual reasons, users must apply directly to receive raw TV data. Visit <http://mediaproject.wesleyan.edu/dataaccess/> and fill out the online request form for accessing TV data.
 
-For inference scripts, you will need to download the following input files from Figshare:
+For inference scripts, you will need to download the following input files from Figshare. Please note that on Figshare, you will have to fill out a form and will then immediately get data access. :
 
-- For Facebook 2022 [04_prepare_fb2022.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_fb2022.R): [fb_2022_adid_text.csv.gz](https://figshare.wesleyan.edu/account/articles/26124295)
-- For Google 2022 [04_prepare_google_2022.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_google_2022.R): [g2022_adid_01062021_11082022_text.csv.gz](https://figshare.wesleyan.edu/account/articles/26124343)
+- For Facebook 2022 [04_prepare_fb2022.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_fb2022.R): [fb_2022_adid_text.csv.gz](https://www.creativewmp.com/data-access/)
+- For Google 2022 [04_prepare_google_2022.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_google_2022.R): [g2022_adid_01062021_11082022_text.csv.gz](https://www.creativewmp.com/data-access/)
 
 Legacy (non-2022) data production:
 
-- For Facebook 2020 [04_prepare_140m.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_140m.R): [fb_2020_140m_adid_text_clean.csv.gz](https://figshare.wesleyan.edu/account/articles/26093257)
+- For Facebook 2020 [04_prepare_140m.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_140m.R): fb_2020_140m_adid_text_clean.csv.gz. This data will be made available when it is ready.
 - For Google 2020 [04_prepare_google_2020.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_google_2020.R): [google_2020_adid_text_clean.csv.gz](https://github.com/Wesleyan-Media-Project/datasets/blob/main/google/google_2020_adid_text_clean.csv.gz)
 
 ### 2.4 Run Scripts
@@ -126,14 +126,14 @@ In order to execute an R script you can run the following command from your term
 Rscript file.R
 ```
 
-The scripts that begin with 04 are all alternatives of each other, with each one preparing a different dataset so that it is in the same shape as the training data. Here is a list of scripts and any input file you will need:
+The scripts that begin with 04 are all alternatives of each other, with each one preparing a different dataset so that it is in the same shape as the training data. Here is a list of scripts and any input files you will need along with links to those files. Please note that for the Figshare links, you will have to fill out a form and will then immediately get data access. :
 
-- For Facebook 2022 [04_prepare_fb2022.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_fb2022.R): [fb_2022_adid_text.csv.gz](https://figshare.wesleyan.edu/account/articles/26124295)
-- For Google 2022 [04_prepare_google_2022.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_google_2022.R): [g2022_adid_01062021_11082022_text.csv.gz](https://figshare.wesleyan.edu/account/articles/26124343)
+- For Facebook 2022 [04_prepare_fb2022.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_fb2022.R): [fb_2022_adid_text.csv.gz](https://www.creativewmp.com/data-access/)
+- For Google 2022 [04_prepare_google_2022.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_google_2022.R): [g2022_adid_01062021_11082022_text.csv.gz](https://www.creativewmp.com/data-access/)
 
 Legacy, non-2022 data:
 
-- For Facebook 2020 [04_prepare_140m.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_140m.R): [fb_2020_140m_adid_text_clean.csv.gz](https://figshare.wesleyan.edu/account/articles/26093257)
+- For Facebook 2020 [04_prepare_140m.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_140m.R): fb_2020_140m_adid_text_clean.csv.gz. This data will be made available when it is ready.
 - For Google 2020 [04_prepare_google_2020.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_google_2020.R): [google_2020_adid_text_clean.csv.gz](https://github.com/Wesleyan-Media-Project/datasets/blob/main/google/google_2020_adid_text_clean.csv.gz)
 
 The scripts that begin with 05 are also all alternatives of each other, with each one running inference on a different dataset.
