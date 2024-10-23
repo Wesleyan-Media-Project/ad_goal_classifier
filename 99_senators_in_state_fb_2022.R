@@ -6,7 +6,7 @@ library(ggplot2)
 
 # Load WMP entity file, restrict to senators and only keep pdid and senate state
 # wmp_fb_2022_entities_v112322.csv is an output of the datasets repo
-ent <- fread("../datasets/wmp_entity_files/Facebook/2022/wmp_fb_2022_entities_v112322.csv")
+ent <- fread("../datasets/wmp_entity_files/Facebook/wmp_fb_2022_entities_v082324.csv")
 ent <- filter(ent, wmp_spontype == "campaign") %>%
   filter(wmp_office == "us senate") %>%
   select(pd_id, sen_state) %>%
