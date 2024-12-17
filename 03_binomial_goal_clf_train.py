@@ -14,17 +14,17 @@ results_dir = 'performance'
 train = pd.read_csv('data/train.csv', names = ['ad_id', 'text', 'DONATE', 'CONTACT', 'PURCHASE', 'GOTV', 'EVENT', 'POLL', 'GATHERINFO', 'LEARNMORE', "PRIMARY_PERSUADE"])
 test = pd.read_csv('data/test.csv', names = ['ad_id', 'text', 'DONATE', 'CONTACT', 'PURCHASE', 'GOTV', 'EVENT', 'POLL', 'GATHERINFO', 'LEARNMORE', "PRIMARY_PERSUADE"])
 
-clf_rf = Pipeline([('vect', CountVectorizer()),
-                    ('tfidf', TfidfTransformer()),
-                    ('cal', CalibratedClassifierCV(RandomForestClassifier(n_estimators=500, random_state=123), cv=2, method="sigmoid"),)
-])
-
 model_name = 'rf'
 
 goals = ["DONATE", "CONTACT", "PURCHASE", "GOTV", "EVENT", "POLL", "GATHERINFO", "LEARNMORE", "PRIMARY_PERSUADE"]
 
 for g in goals:
   
+  clf_rf = Pipeline([('vect', CountVectorizer()),
+                    ('tfidf', TfidfTransformer()),
+                    ('cal', CalibratedClassifierCV(RandomForestClassifier(n_estimators=500, random_state=123), cv=2, method="sigmoid"),)
+])
+
   clf_rf.fit(train['text'], train[g])
   predicted = clf_rf.predict(test['text'])
   
