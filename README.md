@@ -125,7 +125,7 @@ Rscript file.R
 The scripts that begin with 04 are all alternatives of each other, with each one preparing a different dataset so that it is in the same shape as the training data. Here is a list of scripts and any input files you will need along with links to those files. Please note that for the Figshare links, you will have to fill out a form and will then immediately get data access. These scripts below prepares data necessary for the inference step in [`03_train_inference_2022.ipynb`](03_train_inference_2022.ipynb):
 
 - For Facebook 2022 [04_prepare_fb2022.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_fb2022.R): [fb_2022_adid_text.csv.gz](https://www.creativewmp.com/data-access/)
-- For Google 2022 [04_prepare_google_2022.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_google_2022.R): [g2022_adid_01062021_11082022_text.csv.gz](https://www.creativewmp.com/data-access/)
+- For Google 2022 [04_prepare_google_2022.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_google_2022.R): [g2022_adid_text.csv.gz](https://www.creativewmp.com/data-access/)
 
 Legacy, non-2022 data:
 
