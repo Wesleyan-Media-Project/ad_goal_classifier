@@ -104,15 +104,11 @@ Legacy (non-2022) data production:
 
 ### 2.4 Run Scripts
 
-#### 2.4.1 Training
+#### 2.4.1 Training & Inference
 
-**NOTE**: If you do not want to train the models from scratch, you can use the trained models we provide [here](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/tree/main/models) and skip to 2.4.2.
+To run the inference scripts, you first need to train a machine learning classification model. The training data is located [here](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/data/fbel_w_train.csv). Here is the [codebook](https://drive.google.com/drive/folders/1gx1hDxEON_ck_i49nhbFpGXFCRbCU5bM?usp=share_link) of the dataset.
 
-To run the inference scripts, you first need to train a machine learning classification model. The training data is the FBEL dataset, located [here](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/data/fbel_w_train.csv). Here is the [codebook](https://drive.google.com/drive/folders/1gx1hDxEON_ck_i49nhbFpGXFCRbCU5bM?usp=share_link) of the dataset.
-
-We prepare the training data which is then trained on a Random Forest Classification model (80/20 train/test split). First, run [`01_prepare_fbel.R`](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/01_prepare_fbel.R) and [`02_create_training_data.py`](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/02_create_training_data.py) to prepare training data. Second, run script [`03_binomial_goal_clf_train.py`](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/03_binomial_goal_clf_train.py) to train the model on the training set, and also record performance on the test set. Performance scores for each goal are saved in [`performance/rf/`](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/tree/main/performance/rf). Note that we train nine different binary classification models, one for each goal category.
-
-#### 2.4.2 Inference
+We prepare the training data which is then trained on a Random Forest Classification model (80/20 train/test split). First, run [`01_prepare_fbel.R`](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/01_prepare_fbel.R) and [`02_create_training_data.py`](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/02_create_training_data.py) to prepare training data. Second, run script [`03_train_inference_2022.ipynb`](03_train_inference_2022.ipynb) to train the model on the training set, record performance on the test set, and make inference on uncoded 2022 datasets. Note that we train nine different binary classification models, one for each goal category.
 
 In order to execute a Python script you can run the following command from your terminal from within the directory of the script replacing `file.py` with the file name of the script you want to run:
 
@@ -126,7 +122,7 @@ In order to execute an R script you can run the following command from your term
 Rscript file.R
 ```
 
-The scripts that begin with 04 are all alternatives of each other, with each one preparing a different dataset so that it is in the same shape as the training data. Here is a list of scripts and any input files you will need along with links to those files. Please note that for the Figshare links, you will have to fill out a form and will then immediately get data access. :
+The scripts that begin with 04 are all alternatives of each other, with each one preparing a different dataset so that it is in the same shape as the training data. Here is a list of scripts and any input files you will need along with links to those files. Please note that for the Figshare links, you will have to fill out a form and will then immediately get data access. These scripts below prepares data necessary for the inference step in [`03_train_inference_2022.ipynb`](03_train_inference_2022.ipynb):
 
 - For Facebook 2022 [04_prepare_fb2022.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_fb2022.R): [fb_2022_adid_text.csv.gz](https://www.creativewmp.com/data-access/)
 - For Google 2022 [04_prepare_google_2022.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_google_2022.R): [g2022_adid_01062021_11082022_text.csv.gz](https://www.creativewmp.com/data-access/)
