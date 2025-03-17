@@ -17,7 +17,7 @@ To analyze the different dimensions of political ad transparency we have develop
 
 ## 1. Overview
 
-In this repo, we classify ads into the following nine category of goals:
+In this repo, we classify ads into the following three category of goals:
 
 - Donate: Request for donations
 - Contact: Request for viewer to contact lawmakers
@@ -108,7 +108,7 @@ Legacy (non-2022) data production:
 
 To run the inference scripts, you first need to train a machine learning classification model. The training data is located [here](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/data/fbel_w_train.csv). Here is the [codebook](https://drive.google.com/drive/folders/1gx1hDxEON_ck_i49nhbFpGXFCRbCU5bM?usp=share_link) of the dataset.
 
-We prepare the training data which is then trained on a Random Forest Classification model (80/20 train/test split). First, run [`01_prepare_fbel.R`](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/01_prepare_fbel.R) and [`02_create_training_data.py`](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/02_create_training_data.py) to prepare training data. Second, run script [`03_train_inference_2022.ipynb`](03_train_inference_2022.ipynb) to train the model on the training set, record performance on the test set, and make inference on uncoded 2022 datasets. Note that we train nine different binary classification models, one for each goal category.
+We prepare the training data which is then trained on a Random Forest Classification model (80/20 train/test split). First, run [`01_prepare_fbel.R`](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/01_prepare_fbel.R) and [`02_create_training_data.py`](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/02_create_training_data.py) to prepare training data. Second, run script [`03_train_inference_2022.ipynb`](03_train_inference_2022.ipynb) to train the model on the training set, record performance on the test set, and make inference on uncoded 2022 datasets. Performance has been printed out in this notebook. Note that in this script we train three binary classification models for the three most important goals, one for each goal category.
 
 In order to execute a Python script you can run the following command from your terminal from within the directory of the script replacing `file.py` with the file name of the script you want to run:
 
