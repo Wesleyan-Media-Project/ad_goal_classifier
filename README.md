@@ -95,7 +95,7 @@ To run the scripts in this repo install R and the scripts required packages:
 For inference scripts, you will need to download the following input files from Figshare. Please note that on Figshare, you will have to fill out a form and will then immediately get data access. :
 
 - For Facebook 2022 [04_prepare_fb2022.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_fb2022.R): [fb_2022_adid_text.csv.gz](https://www.creativewmp.com/data-access/)
-- For Google 2022 [04_prepare_google_2022.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_google_2022.R): [g2022_adid_01062021_11082022_text.csv.gz](https://www.creativewmp.com/data-access/)
+- For Google 2022 [04_prepare_google_2022.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_google_2022.R): [g2022_adid_text.csv.gz](https://www.creativewmp.com/data-access/)
 
 Legacy (non-2022) data production:
 
@@ -121,7 +121,6 @@ In order to execute an R script you can run the following command from your term
 ```bash
 Rscript file.R
 ```
-
 The scripts that begin with 04 are all alternatives of each other, with each one preparing a different dataset so that it is in the same shape as the training data. Here is a list of scripts and any input files you will need along with links to those files. Please note that for the Figshare links, you will have to fill out a form and will then immediately get data access. These scripts below prepares data necessary for the inference step in [`03_train_inference_2022.ipynb`](03_train_inference_2022.ipynb):
 
 - For Facebook 2022 [04_prepare_fb2022.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_fb2022.R): [fb_2022_adid_text.csv.gz](https://www.creativewmp.com/data-access/)
@@ -132,9 +131,7 @@ Legacy, non-2022 data:
 - For Facebook 2020 [04_prepare_140m.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_140m.R): fb_2020_140m_adid_text_clean.csv.gz. This data will be made available when it is ready.
 - For Google 2020 [04_prepare_google_2020.R](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/04_prepare_google_2020.R): [google_2020_adid_text_clean.csv.gz](https://github.com/Wesleyan-Media-Project/datasets/blob/main/google/google_2020_adid_text_clean.csv.gz)
 
-The scripts that begin with 05 are also all alternatives of each other, with each one running inference on a different dataset.
-
-For the scripts that begin with 04 and 05, inferencing which dataset they are being run on can be done from looking at the end of their names. For example, `05_binomial_goal_clf_inference_google_2022.py` is inference on the `data-post-production/google_2022 dataset`. In addition, this information can be seen when looking at the scripts' input data, which will include a path to the dataset they are referencing.
+The scripts that begin with 05 are also all alternatives of each other, with each one running inference on a different dataset. However, their functionalities have been replaced by [`03_train_inference_2022.ipynb`](03_train_inference_2022.ipynb). Please skip the scripts that begin with 05. 
 
 Scripts beginning with 06 and 07 test whether the model trained on only Facebook ads can also be applied to TV ads. It does so by applying the models to 2020 TV ads labeled by WMP.
 
@@ -144,7 +141,7 @@ Scripts beginning with 99 use Facebook's regional distribution to determine the 
 
 ## 3. Results Storage
 
-The output data for the scripts in this repo is in `.csv` format – the name and location of each output file is specified in the script that creates it. For example, the output data for [`05_binomial_goal_clf_inference_fb_2022.py`](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/05_binomial_goal_clf_inference_fb_2022.py) is stored at [`data/ad_goal_rf_fb2022.csv.gz`](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/data/ad_goal_rf_fb2022.csv.gz).
+The output data for the scripts in this repo is in `.csv` format – the name and location of each output file is specified in the script that creates it. For example, the output data for [`03_train_inference_2022.ipynb`](03_train_inference_2022.ipynb) is stored at [`data/ad_goal_rf_fb2022.csv.gz`](https://github.com/Wesleyan-Media-Project/ad_goal_classifier/blob/main/data/ad_goal_rf_fb2022.csv.gz).
 
 ## 4. Thank You
 
